@@ -42,7 +42,9 @@
         
         <script type="text/x-handlebars">
             <div id="wrapper">
-                   
+            
+                <div id="snap">Snap at 200px</div>
+            
                 <div id="categories">
                     <h3>Categories</h3>
                     <ul>
@@ -53,9 +55,7 @@
                                 <p>{{DisplayName}}</p>
 
                                 Produkte...<br />
-                                {{#listProducts Products}}
-                                    <h1>Produkte:</h1> 
-                                {{/listProducts}}
+                                {{#listProducts Products}}{{/listProducts}}
                             </li>    
                         {{/each}}
                     </ul>
@@ -75,7 +75,9 @@
         <script src="js/libs/ember-1.0.0-rc.3.min.js"></script>
         <script src="js/libs/ember-data-latest.min.js"></script>
         <script src="js/app.js"></script> 
-
+        <script src="js/libs/jq.snap.js"></script> 
+        <script src="js/main.js"></script> 
+        
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. NOT NEEDED at the moment -->
         <script>
             //var _gaq=[["_setAccount","UA-XXXXX-X"],["_trackPageview"]];

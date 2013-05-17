@@ -218,13 +218,12 @@ textarea[contenteditable] {
     /* Style adjustments for viewports that meet the condition */
 }
 
-/*** Test ***/
-
-h2 {
-    color:#000;
-}
-
-.dennyclass {
-    background: red;
-    color: white;
+/*** navi snap css ***/
+#snap {
+    width:320px;
+    height:40px;
+    color:white;
+    background:red;
+    position:absolute;
+    top:180px;
 }
