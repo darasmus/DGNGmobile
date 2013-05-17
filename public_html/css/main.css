@@ -217,9 +217,3 @@ textarea[contenteditable] {
        only screen and (min-resolution: 144dpi) {
     /* Style adjustments for viewports that meet the condition */
 }
-
-/*** Test GIT ***/
-
-h1 {
-    color:#ccc;
-}
