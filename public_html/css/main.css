@@ -218,8 +218,15 @@ textarea[contenteditable] {
     /* Style adjustments for viewports that meet the condition */
 }
 
+<<<<<<< HEAD
 /*** Test ***/
 
 h2 {
     color:#000;
 }
+=======
+.dennyclass {
+    background: red;
+    color: white;
+}
+>>>>>>> test css changes
