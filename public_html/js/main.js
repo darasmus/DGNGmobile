@@ -1,6 +1,8 @@
 $(document).ready(function()
 {
-    //snap navi at 395px offset
-    $('#navi').snap(200);
+    //define snapper pos
+    $(window).snap(200,$('#redsnap'));
+    $(window).snap(400,$('#bluesnap'));
+    $(window).snap(600,$('#greensnap'));
 });
   

@@ -1,12 +1,11 @@
-$.fn.snap = function ( pos ) {
+$.fn.snap = function (pos,elem) {
     
-    $window = $(window);
-    $window.scroll(function(e){
-    	    	
-        if ($window.scrollTop() > pos) {
-            $('#snap').css({ 'position':'fixed','top':0 });
+    $(this).scroll(function(e){    	
+        if ($(this).scrollTop() > pos) {
+            elem.css({ 'position':'fixed','top':0 });
         } else {
-            $('#snap').css({ 'position':'absolute', 'top':180 });
+            var newPos = pos -20;
+            elem.css({ 'position':'absolute', 'top': newPos});
         }
     });
     

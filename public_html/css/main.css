@@ -219,11 +219,26 @@ textarea[contenteditable] {
 }
 
 /*** navi snap css ***/
-#snap {
+.snapper {
     width:320px;
     height:40px;
+    position:absolute;
+}
+
+#redsnap {
     color:white;
     background:red;
-    position:absolute;
     top:180px;
+}
+
+#bluesnap {
+    color:white;
+    background:blue;
+    top:380px;
+}
+
+#greensnap {
+    color:white;
+    background:green;
+    top:580px;
 }
