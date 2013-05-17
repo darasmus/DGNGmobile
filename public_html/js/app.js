@@ -8,6 +8,7 @@
 //--- application ---//
 App = Ember.Application.create({
     ready: function(){
+        App.categoriesController.loadCategories();
         //alert('Width: ' + $(window).width());
     }
 });

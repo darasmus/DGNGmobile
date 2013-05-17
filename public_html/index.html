@@ -42,33 +42,30 @@
         
         <script type="text/x-handlebars">
             <div id="wrapper">
+                   
+                <div id="categories">
+                    <h3>Categories</h3>
+                    <ul>
+                        {{#each App.categoriesController}}
+                            <li>
+                                <img {{bindAttr src="MobileIcon"}} />
+                                <h3>{{Headline}}</h3>
+                                <p>{{DisplayName}}</p>
 
-                <div id="content">
-                    {{#linkTo 'categories'}}Show Categories{{/linkTo}}                        
-                    {{outlet}}
+                                Produkte...<br />
+                                {{#listProducts Products}}
+                                    <h1>Produkte:</h1> 
+                                {{/listProducts}}
+                            </li>    
+                        {{/each}}
+                    </ul>
                 </div>
+                
             </div>
         </script>
         
         <script type="text/x-handlebars" id="categories">
-            <div id="categories">
-                <button {{action "loadCategories" target="App.categoriesController"}}>Go!</button>
-                <h3>Categories</h3>
-                <ul>
-                    {{#each App.categoriesController}}
-                        <li>
-                            <img {{bindAttr src="MobileIcon"}} />
-                            <h3>{{Headline}}</h3>
-                            <p>{{DisplayName}}</p>
-   
-                            Produkte...<br />
-                            {{#listProducts Products}}
-                                <h1>Produkte:</h1> 
-                            {{/listProducts}}
-                        </li>    
-                    {{/each}}
-                </ul>
-            </div>
+            
         </script>
         
         <!-- ################### CONTENT ################### --> 
