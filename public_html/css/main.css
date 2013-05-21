@@ -223,7 +223,7 @@ textarea[contenteditable] {
     color:white;
     background:red;
     top:0px;
-    z-index:1000;
+    z-index:10;
 }
 
 .snapper_placeholder {

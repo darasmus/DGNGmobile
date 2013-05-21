@@ -5,6 +5,8 @@
 // (c) 2013
 //----------------------------------------------------------//
 
+var snapindex = 1;
+
 //--- application ---//
 App = Ember.Application.create({
     ready: function(){
@@ -39,15 +41,17 @@ App.SearchTextField = Ember.TextField.extend({
 });
 
 App.CatView = Ember.View.extend({       
-    
+       
     didInsertElement: function() {
             var p = this.$();
             var _top = p.offset().top;
+            var _index = snapindex*10;
             
             $(window).snap(_top,p);
-            p.css({ 'position':'absolute', 'top': _top-60});
+            p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index});
             
-            console.log(_top);
+            console.log(_top + " / " + _index);
+            snapindex++;
     }
 });
 
