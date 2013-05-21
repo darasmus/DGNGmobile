@@ -122,9 +122,11 @@ App.CategoriesController = Ember.ArrayController.extend({
                         MobileImageUrl: product.MobileImageUrl,
                         GrossPrice: product.GrossPrice,
                         Miles: product.Miles,
-                        MobileDescription: product.MobileDescription
+                        MobileDescription: product.MobileDescription,
+                        ProductId: product.ProductId
                     });
                     
+                    //is available?
                     if( (product.IsOrderable === true) && (product.IsInStock === true) ) {
                         c.Products.pushObject(p);
                     }
@@ -146,13 +148,13 @@ Handlebars.registerHelper('listProducts', function(context, options) {
   var data = options.contexts[0].Products;
   
   for(var i=0, j=data.length; i<j; i++) {
-    ret = ret + '<section>'
+    ret = ret + '<section class="productlink" data-id="' + data[i].ProductId + '">'
               + '<h1>' + data[i].DisplayName + '</h1>'
               + '<p class="price">' + data[i].GrossPrice + '</p>'
               + '<p class="miles">' + data[i].Miles + ' Punkte</p>'
               + '<img src="' + data[i].MobileImageUrl + '" height="45" />'
               + '<aside>' + data[i].MobileDescription + '</aside>'
-              + '<section>';
+              + '</section>';
   }
   
   return ret;
