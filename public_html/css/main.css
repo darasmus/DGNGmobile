@@ -252,15 +252,15 @@ textarea[contenteditable] {
 }
 
 #bluesnap {
-    color:white;
-    background:blue;
-    top:380px;
+  color:white;
+  background:blue;
+  top:380px;
 }
 
 #greensnap {
-    color:white;
-    background:green;
-    top:580px;
+  color:white;
+  background:green;
+  top:580px;
 }
 
 /*** productlist items ***/
