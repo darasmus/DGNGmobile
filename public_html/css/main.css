@@ -85,21 +85,11 @@ ul {
     background: #ccc;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 h3 {
     margin:0;
     padding:0;
 }
 
-
-=======
->>>>>>> 4af2b4c5994ddb59d7ec19d67d66cf9a0d054d11
-=======
->>>>>>> 4af2b4c5994ddb59d7ec19d67d66cf9a0d054d11
-=======
->>>>>>> 4af2b4c5994ddb59d7ec19d67d66cf9a0d054d11
 /* ==========================================================================
    Helper classes
    ========================================================================== */
@@ -231,7 +221,6 @@ textarea[contenteditable] {
     margin-bottom: 10px;
     color:white;
     background:red;
-<<<<<<< HEAD
     top:0px;
 }
 
@@ -245,9 +234,7 @@ textarea[contenteditable] {
   left:0px;
   position:fixed;
   z-index:10000;
-  
-=======
-    top:180px;
+  top:180px;
 }
 
 #bluesnap {
@@ -266,11 +253,4 @@ textarea[contenteditable] {
 
 h5 {
     color:#ccc;
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> 4af2b4c5994ddb59d7ec19d67d66cf9a0d054d11
-=======
->>>>>>> 4af2b4c5994ddb59d7ec19d67d66cf9a0d054d11
-=======
->>>>>>> 4af2b4c5994ddb59d7ec19d67d66cf9a0d054d11
 }
