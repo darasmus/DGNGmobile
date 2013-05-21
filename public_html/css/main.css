@@ -267,7 +267,7 @@ textarea[contenteditable] {
 
 div.productlist section {
   border-bottom:1px solid #ccc;
-  padding:10px;
+  padding: 10px 0 0 20px;
 }
 
 div.productlist section h1 {
@@ -277,7 +277,7 @@ div.productlist section h1 {
 div.productlist section img {
   float:left;
   height: auto;
-  width: 28%;
+  width: 26%;
 }
 
 div.productlist section.productlink img {
@@ -292,5 +292,6 @@ div.productlist section.productlink aside {
 }
 
 div.productlist section.productlink p {
-  margin:0;
+  margin: 18px 0;
+  font-size: .8em;
 }
