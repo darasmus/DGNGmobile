@@ -150,9 +150,9 @@ Handlebars.registerHelper('listProducts', function(context, options) {
   for(var i=0, j=data.length; i<j; i++) {
     ret = ret + '<section class="productlink" data-id="' + data[i].ProductId + '">'
               + '<h1>' + data[i].DisplayName + '</h1>'
+              + '<img src="' + data[i].MobileImageUrl + '" height="45" />'
               + '<p class="price">' + data[i].GrossPrice + '</p>'
               + '<p class="miles">' + data[i].Miles + ' Punkte</p>'
-              + '<img src="' + data[i].MobileImageUrl + '" height="45" />'
               + '<aside>' + data[i].MobileDescription + '</aside>'
               + '</section>';
   }
