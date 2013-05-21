@@ -263,8 +263,9 @@ textarea[contenteditable] {
     top:580px;
 }
 
-/*** Test ***/
+/*** productlist items ***/
 
-h5 {
-    color:#ccc;
+div.productlist section h1 {
+  font-size: 1em;
+  padding: 10px;
 }
