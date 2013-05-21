@@ -148,7 +148,7 @@ Handlebars.registerHelper('listProducts', function(context, options) {
   var data = options.contexts[0].Products;
   
   for(var i=0, j=data.length; i<j; i++) {
-    ret = ret + '<section class="productlink" data-id="' + data[i].ProductId + '">'
+    ret = ret + '<section class="productlink clearfix" data-id="' + data[i].ProductId + '">'
               + '<h1>' + data[i].DisplayName + '</h1>'
               + '<img src="' + data[i].MobileImageUrl + '" />'
               + '<p class="price">' + data[i].GrossPrice + '</p>'
