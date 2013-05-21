@@ -65,6 +65,7 @@ textarea {
 ul {
     list-style: none;
     padding:0;
+    margin:0;
 }
 
 /* ==========================================================================
@@ -222,7 +223,7 @@ textarea[contenteditable] {
     color:white;
     background:red;
     top:0px;
-    position:relative;
+    z-index:1000;
 }
 
 .snapper_placeholder {
@@ -231,6 +232,10 @@ textarea[contenteditable] {
     margin-bottom: 10px;
     top:0px;
     position:relative;
+}
+
+.productlist {
+    padding-top:75px;
 }
 
 #info {

@@ -5,8 +5,6 @@
 // (c) 2013
 //----------------------------------------------------------//
 
-var _cats = new Array();
-
 //--- application ---//
 App = Ember.Application.create({
     ready: function(){
@@ -41,8 +39,15 @@ App.SearchTextField = Ember.TextField.extend({
 });
 
 App.CatView = Ember.View.extend({       
+    
     didInsertElement: function() {
             var p = this.$();
+            var _top = p.offset().top - 60;
+            
+            $(window).snap(_top,p);
+            p.css({ 'position':'absolute', 'top': _top});
+            
+            console.log(_top);
     }
 });
 

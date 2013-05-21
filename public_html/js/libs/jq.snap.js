@@ -1,10 +1,13 @@
 $.fn.snap = function (pos,elem) {
     
-    $(this).scroll(function(e){    	
-        if ($(this).scrollTop() > pos) {
-            elem.css({ 'position':'fixed','top':0 });
+    $(window).on('touchmove scroll', function () {   
+        
+        var window_top = $(window).scrollTop();
+        
+        if (window_top > pos-3) {
+            elem.css({ 'position':'fixed','top':-60 });
         } else {
-            var newPos = pos;
+            var newPos = pos-60;
             elem.css({ 'position':'absolute', 'top': newPos});
         }
     });
