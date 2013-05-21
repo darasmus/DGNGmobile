@@ -4,8 +4,8 @@ $.fn.snap = function (pos,elem) {
         if ($(this).scrollTop() > pos) {
             elem.css({ 'position':'fixed','top':0 });
         } else {
-            var newPos = pos -20;
-            elem.css({ 'position':'absolute', 'top': newPos});
+            var newPos = pos;
+            elem.css({ 'position':'relative', 'top': newPos});
         }
     });
     

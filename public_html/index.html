@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]>    <html class="no-js iem7"> <![endif]-->
-<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js"> <!--<![endif]-->
+<html>
     <head>
         <meta charset="utf-8">
         <title></title>
@@ -40,34 +39,29 @@
         
         <!-- ################### CONTENT ################### --> 
         
+        <div id="info"></div>
+        
         <script type="text/x-handlebars">
             <div id="wrapper">
-            
-                <div class="snapper" id="redsnap">Snap at 200px</div>
-                <div class="snapper" id="bluesnap">Snap at 400px</div>
-                <div class="snapper" id="greensnap">Snap at 600px</div>
                 
                 <div id="categories">
-                    <h3>Categories</h3>
                     <ul>
                         {{#each App.categoriesController}}
                             <li>
-                                <img {{bindAttr src="MobileIcon"}} />
-                                <h3>{{Headline}}</h3>
-                                <p>{{DisplayName}}</p>
-
-                                Produkte...<br />
+                                {{#view App.CatView}}
+                                <div id="redsnap" class="snapper" style="background:{{unbound MobileColor}};">
+                                    <img {{bindAttr src="MobileIcon"}} />
+                                    {{MobileName}}
+                                </div>
+                                {{/view}}    
                                 {{#listProducts Products}}{{/listProducts}}
                             </li>    
                         {{/each}}
+                        
                     </ul>
                 </div>
                 
             </div>
-        </script>
-        
-        <script type="text/x-handlebars" id="categories">
-            
         </script>
         
         <!-- ################### CONTENT ################### --> 
@@ -76,9 +70,13 @@
         <script src="js/libs/handlebars-1.0.0-rc.3.js"></script>
         <script src="js/libs/ember-1.0.0-rc.3.min.js"></script>
         <script src="js/libs/ember-data-latest.min.js"></script>
-        <script src="js/app.js"></script> 
-        <script src="js/libs/jq.snap.js"></script> 
-        <script src="js/main.js"></script> 
+        <script src="js/app.js"></script>
+        <script src="js/libs/jq.snap.js"></script>
+        <script src="js/main.js"></script>
+<<<<<<< HEAD
+        
+=======
+>>>>>>> 4af2b4c5994ddb59d7ec19d67d66cf9a0d054d11
         
         <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. NOT NEEDED at the moment -->
         <script>

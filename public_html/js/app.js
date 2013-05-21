@@ -5,6 +5,8 @@
 // (c) 2013
 //----------------------------------------------------------//
 
+var _cats = new Array();
+
 //--- application ---//
 App = Ember.Application.create({
     ready: function(){
@@ -19,19 +21,28 @@ App.Store = DS.Store.extend({
 
 App.Router.map(function() {
     this.route("index", { path: "/" });
-    this.route("categories", { path: "/categories" });
-   
+    this.route("categories", { path: "/categories" }); 
 });
 
 App.IndexRoute = Ember.Route.extend({
     
 });
 
+App.ApplicationView = Ember.View.extend({
+});
+
+
 //--- views ---//
 
 App.SearchTextField = Ember.TextField.extend({
     insertNewline: function(){
         App.tweetsController.loadTweets();
+    }
+});
+
+App.CatView = Ember.View.extend({       
+    didInsertElement: function() {
+            var p = this.$();
     }
 });
 

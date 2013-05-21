@@ -1,8 +1,25 @@
 $(document).ready(function()
 {
-    //define snapper pos
-    $(window).snap(200,$('#redsnap'));
-    $(window).snap(400,$('#bluesnap'));
-    $(window).snap(600,$('#greensnap'));
-});
+    var _init = false;
+    
+    $(window).scroll(function () {
+        
+        if(!_init) {
+            $( ".snapper" ).each(function( index ) {
+                //define snapper pos
+                var _top = $(this).offset().top;
+                $(window).snap(_top,$(this));
+                console.log(_top);
+            });
+            _init = true;
+        }
+        
+        var window_top = $(window).scrollTop();
+        $('#info').html('WinTop: ' + window_top);
+
+              
+    });
+    
+ }); // document ready
+
   
