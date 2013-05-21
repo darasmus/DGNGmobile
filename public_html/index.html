@@ -48,7 +48,7 @@
                     <ul>
                         {{#each App.categoriesController}}
                             <li>
-                                {{#view App.CatView}}
+                                {{#view App.CatView tagName="a" target="#" action="someAction"}}
                                     <div class="snapper_placeholder"></div>
                                     <div class="snapper" style="background:{{unbound MobileColor}};">
                                     <img {{bindAttr src="MobileIcon"}} />
@@ -60,7 +60,6 @@
                                 </div>
                             </li>    
                         {{/each}}
-                        
                     </ul>
                 </div>
                 

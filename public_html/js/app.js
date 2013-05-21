@@ -60,7 +60,7 @@ App.CatView = Ember.View.extend({
 App.Category = Ember.Object.extend({
     DisplayName: null,
     Headline: null,
-    MobileColo: null,
+    MobileColor: null,
     MobileIcon: null,
     MobileName: null,
     Name: null,
@@ -91,6 +91,11 @@ App.Product = Ember.Object.extend({
 
 //--- controller ---//
 
+App.ProductController = Ember.ArrayController.extend({
+    
+});
+App.productController = App.ProductController.create();            
+
 App.CategoriesController = Ember.ArrayController.extend({
     content: [],
             
@@ -115,7 +120,9 @@ App.CategoriesController = Ember.ArrayController.extend({
                     var p = App.Product.create({
                         DisplayName: product.DisplayName,
                         MobileImageUrl: product.MobileImageUrl,
-                        ShortDescription: product.ShortDescription
+                        GrossPrice: product.GrossPrice,
+                        Miles: product.Miles,
+                        MobileDescription: product.MobileDescription
                     });
                     
                     if( (product.IsOrderable === true) && (product.IsInStock === true) ) {
@@ -139,7 +146,13 @@ Handlebars.registerHelper('listProducts', function(context, options) {
   var data = options.contexts[0].Products;
   
   for(var i=0, j=data.length; i<j; i++) {
-    ret = ret + data[i].DisplayName +  '<br /><img src="' + data[i].MobileImageUrl + '" height="45" /><br />' + data[i].ShortDescription + "<br /><br />";
+    ret = ret + '<section>'
+              + '<h1>' + data[i].DisplayName + '</h1>'
+              + '<p class="price">' + data[i].GrossPrice + '</p>'
+              + '<p class="miles">' + data[i].Miles + ' Punkte</p>'
+              + '<img src="' + data[i].MobileImageUrl + '" height="45" />'
+              + '<aside>' + data[i].MobileDescription + '</aside>'
+              + '<section>';
   }
   
   return ret;
