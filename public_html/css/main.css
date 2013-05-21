@@ -83,7 +83,7 @@ ul {
     text-align: left;
     margin: 0 auto;
     position: relative;
-    background: #ccc;
+    background: #fff;
 }
 
 h3 {
@@ -265,7 +265,25 @@ textarea[contenteditable] {
 
 /*** productlist items ***/
 
+div.productlist section {
+  border-bottom:1px solid #ccc;
+  padding:10px;
+}
+
 div.productlist section h1 {
   font-size: 1em;
-  padding: 10px;
+}
+
+div.productlist section img {
+  float:left;
+  height: auto;
+  width: 25%;
+}
+
+div.productlist section.productlink img {
+  margin: 0 6em 0 0;
+}
+
+div.productlist section.productlink aside{
+  font-size:.7em;
 }
