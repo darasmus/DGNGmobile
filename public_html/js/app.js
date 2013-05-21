@@ -42,10 +42,10 @@ App.CatView = Ember.View.extend({
     
     didInsertElement: function() {
             var p = this.$();
-            var _top = p.offset().top - 60;
+            var _top = p.offset().top;
             
             $(window).snap(_top,p);
-            p.css({ 'position':'absolute', 'top': _top});
+            p.css({ 'position':'absolute', 'top': _top-60});
             
             console.log(_top);
     }
@@ -135,7 +135,7 @@ Handlebars.registerHelper('listProducts', function(context, options) {
   var data = options.contexts[0].Products;
   
   for(var i=0, j=data.length; i<j; i++) {
-    ret = ret + data[i].DisplayName +  '<br /><img src="' + data[i].MobileImageUrl + '" /><br />' + data[i].ShortDescription + "<br /><br />";
+    ret = ret + data[i].DisplayName +  '<br /><img src="' + data[i].MobileImageUrl + '" height="45" /><br />' + data[i].ShortDescription + "<br /><br />";
   }
   
   return ret;
