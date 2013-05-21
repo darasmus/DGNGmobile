@@ -7,6 +7,8 @@
 
 var snapindex = 1;
 
+Ember.ENV = 'undefined' === typeof ENV ? {} : ENV;
+
 //--- application ---//
 App = Ember.Application.create({
     ready: function(){
@@ -89,12 +91,7 @@ App.Product = Ember.Object.extend({
     RecommendedProductIds: null
 });
 
-//--- controller ---//
-
-App.ProductController = Ember.ArrayController.extend({
-    
-});
-App.productController = App.ProductController.create();            
+//--- controller ---//           
 
 App.CategoriesController = Ember.ArrayController.extend({
     content: [],

@@ -1,7 +1,6 @@
 // Version: v1.0.0-rc.2-186-ga488a58
 // Last commit: a488a58 (2013-04-20 22:49:17 -0700)
 
-
 (function() {
 /*global __fail__*/
 
