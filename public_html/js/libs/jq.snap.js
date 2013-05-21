@@ -5,7 +5,7 @@ $.fn.snap = function (pos,elem) {
             elem.css({ 'position':'fixed','top':0 });
         } else {
             var newPos = pos;
-            elem.css({ 'position':'relative', 'top': newPos});
+            elem.css({ 'position':'absolute', 'top': newPos});
         }
     });
     

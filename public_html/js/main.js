@@ -9,6 +9,8 @@ $(document).ready(function()
                 //define snapper pos
                 var _top = $(this).offset().top;
                 $(window).snap(_top,$(this));
+                
+                $(this).css({ 'position':'absolute', 'top': _top});
                 console.log(_top);
             });
             _init = true;

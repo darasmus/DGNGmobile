@@ -49,12 +49,15 @@
                         {{#each App.categoriesController}}
                             <li>
                                 {{#view App.CatView}}
-                                <div id="redsnap" class="snapper" style="background:{{unbound MobileColor}};">
+                                    <div class="snapper_placeholder"></div>
+                                    <div class="snapper" style="background:{{unbound MobileColor}};">
                                     <img {{bindAttr src="MobileIcon"}} />
                                     {{MobileName}}
                                 </div>
-                                {{/view}}    
-                                {{#listProducts Products}}{{/listProducts}}
+                                {{/view}} 
+                                <div class="productlist">
+                                    {{#listProducts Products}}{{/listProducts}}
+                                </div>
                             </li>    
                         {{/each}}
                         

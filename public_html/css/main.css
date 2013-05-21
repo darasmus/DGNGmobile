@@ -222,6 +222,15 @@ textarea[contenteditable] {
     color:white;
     background:red;
     top:0px;
+    position:relative;
+}
+
+.snapper_placeholder {
+    width:320px;
+    height:50px;
+    margin-bottom: 10px;
+    top:0px;
+    position:relative;
 }
 
 #info {
