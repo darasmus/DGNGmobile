@@ -41,42 +41,63 @@
         
         <!-- <div id="info"></div> --> 
         
-        <script type="text/x-handlebars">
+        
+        <script type="text/x-handlebars" data-template-name="application">
             <div id="wrapper">
-                
-                <div id="categories">
-                    <ul>
+              
+                <div id="head">
+                    <div id="openmenu">Menu</div>
+                    <div id="mainmenu">
+                        {{#linkTo "index" classNames="menulink brown"}}Home{{/linkTo}}
+                        {{#linkTo "categories" classNames="menulink violett"}}Categories{{/linkTo}}
+                    </div>
+                </div>
                     
-                        {{#each App.categoriesController}}
-                            
-                            <li> 
-                                {{#view App.CatView}}
-                                    <div class="snapper_placeholder"></div>
-                                    <div class="snapper" style="background:{{unbound MobileColor}};">
-                                    <img {{bindAttr src="MobileIcon"}} />
-                                    {{MobileName}}   
-                                    </div>
-                                {{/view}} 
-                                
-                                <div class="productlist">
-                                
-                                    {{#Products}}
-                                        <section class="productlink" data-id="{{ProductId}}">
-                                            <h1>{{DisplayName}}</h1>
-                                            <img {{bindAttr src="MobileImageUrl"}} />
-                                            <p class="price">{{GrossPrice}}</p>
-                                            <p class="miles">{{Miles}} Punkte</p>
-                                            <aside>{{MobileDescription}}</aside>
-                                         </section>
-                                    {{/Products}}
-  
-                                </div>
-                            </li>  
-                            
-                        {{/each}}
-                    </ul>
+                <div id="content">
+                    {{outlet}}
                 </div>
                 
+            </div>
+        </script>
+        
+        
+        <script type="text/x-handlebars" data-template-name="index">
+            Herzlich willkommen bei Dolce Gusto...
+        </script>
+        
+        <script type="text/x-handlebars" data-template-name="categories">
+            <div id="categories">
+                <ul>
+
+                    {{#each App.categoriesController}}
+
+                        <li> 
+                            {{#view App.CatView}}
+                                <div class="snapper_placeholder"></div>
+                                <div class="snapper" style="background:{{unbound MobileColor}};">
+                                <img {{bindAttr src="MobileIcon"}} />
+                                {{MobileName}}   
+                                </div>
+                            {{/view}} 
+
+                            <div class="productlist">
+
+                                {{#Products}}
+                                    <section class="productlink clearfix" data-id="{{ProductId}}">
+                                        <h1>{{DisplayName}}</h1>
+                                        <img {{bindAttr src="MobileImageUrl"}} />
+                                        <p class="price">{{GrossPrice}}</p>
+                                        <p class="miles">{{Miles}} Punkte</p>
+                                        <aside>{{MobileDescription}}</aside>
+                                     </section>
+                                {{/Products}}
+
+                            </div>
+                        </li>  
+
+                    {{/each}}
+
+                </ul>
             </div>
         </script>
 

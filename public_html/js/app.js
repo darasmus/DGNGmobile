@@ -11,18 +11,17 @@ Ember.ENV = 'undefined' === typeof ENV ? {} : ENV;
 App = Ember.Application.create({
     ready: function(){
         App.categoriesController.loadCategories();
-        //alert('Width: ' + $(window).width());
-        //console.log(App.categoriesController);
     }
 });
 
 App.Store = DS.Store.extend({
-  revision: 12,
+  revision: 12
 });
 
 App.Router.map(function() {
     this.route("index", { path: "/" });
     this.route("categories", { path: "/categories" }); 
+    this.route("static", { path: "/static" });
 });
 
 App.IndexRoute = Ember.Route.extend({
@@ -69,11 +68,6 @@ App.Category = DS.Model.extend({
 
 //--- controller ---//           
 
-App.ProductController = Ember.ArrayController.extend({
-    content: [],
-});
-App.productController = App.ProductController.create(); 
-
 App.CategoriesController = Ember.ArrayController.extend({
     content: [],
             
@@ -113,9 +107,6 @@ App.CategoriesController = Ember.ArrayController.extend({
                 me.pushObject(c);
             });
         });
-        
-        //return this;
-        //console.log(this.get('content'));
     }
 });
 App.categoriesController = App.CategoriesController.create(); 
@@ -138,18 +129,10 @@ App.CatView = Ember.View.extend({
     }
 });
 
-App.ProductView = Ember.View.extend({
-    
-    template: 'productTemplate',
-    Products: function () {
-        var prods = App.categoriesController.get('content');
-        console.log(prods);
-    }
-});
-
 
 //--- helper ---//
 
+//not needed but good for dev helpers
 Handlebars.registerHelper('listProducts', function(context, options) {
     
   var ret = "";
