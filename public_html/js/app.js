@@ -5,8 +5,6 @@
 // (c) 2013
 //----------------------------------------------------------//
 
-var snapindex = 1;
-
 Ember.ENV = 'undefined' === typeof ENV ? {} : ENV;
 
 //--- application ---//
@@ -14,11 +12,12 @@ App = Ember.Application.create({
     ready: function(){
         App.categoriesController.loadCategories();
         //alert('Width: ' + $(window).width());
+        //console.log(App.categoriesController);
     }
 });
 
 App.Store = DS.Store.extend({
-  revision: 12
+  revision: 12,
 });
 
 App.Router.map(function() {
@@ -33,43 +32,9 @@ App.IndexRoute = Ember.Route.extend({
 App.ApplicationView = Ember.View.extend({
 });
 
-
-//--- views ---//
-
-App.SearchTextField = Ember.TextField.extend({
-    insertNewline: function(){
-        App.tweetsController.loadTweets();
-    }
-});
-
-App.CatView = Ember.View.extend({       
-       
-    didInsertElement: function() {
-            var p = this.$();
-            var _top = p.offset().top;
-            var _index = snapindex*10;
-            
-            $(window).snap(_top,p);
-            p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index});
-            
-            console.log(_top + " / " + _index);
-            snapindex++;
-    }
-});
-
 //--- models ---//
 
-App.Category = Ember.Object.extend({
-    DisplayName: null,
-    Headline: null,
-    MobileColor: null,
-    MobileIcon: null,
-    MobileName: null,
-    Name: null,
-    Products: null
-});
-
-App.Product = Ember.Object.extend({
+App.Product = DS.Model.extend({
     DisplayName: null,
     GrossPrice: null,
     IsHidden: null,
@@ -88,10 +53,26 @@ App.Product = Ember.Object.extend({
     PromotionEndDate: null,
     PromotionStartDate: null,
     ShortDescription: null,
-    RecommendedProductIds: null
+    RecommendedProductIds: null,
+    Category: DS.belongsTo('App.Category')
+});
+
+App.Category = DS.Model.extend({
+    DisplayName: null,
+    Headline: null,
+    MobileColor: null,
+    MobileIcon: null,
+    MobileName: null,
+    Name: null,
+    Products: DS.hasMany('App.Product', { embedded: true })
 });
 
 //--- controller ---//           
+
+App.ProductController = Ember.ArrayController.extend({
+    content: [],
+});
+App.productController = App.ProductController.create(); 
 
 App.CategoriesController = Ember.ArrayController.extend({
     content: [],
@@ -103,7 +84,7 @@ App.CategoriesController = Ember.ArrayController.extend({
         $.getJSON(url,function(data){
             me.set('content', []);
             $(data.Categories).each(function(index,value){
-                var c = App.Category.create({
+                var c = App.Category.createRecord({
                     DisplayName: value.DisplayName,
                     Headline: value.Headline,
                     MobileColor: value.MobileColor,
@@ -114,7 +95,7 @@ App.CategoriesController = Ember.ArrayController.extend({
                 });
                 
                 $(value.Products).each(function(index,product){
-                    var p = App.Product.create({
+                    var p = App.Product.createRecord({
                         DisplayName: product.DisplayName,
                         MobileImageUrl: product.MobileImageUrl,
                         GrossPrice: product.GrossPrice,
@@ -132,9 +113,39 @@ App.CategoriesController = Ember.ArrayController.extend({
                 me.pushObject(c);
             });
         });
+        
+        //return this;
+        //console.log(this.get('content'));
     }
 });
 App.categoriesController = App.CategoriesController.create(); 
+
+//--- views ---//
+
+var snapindex = 1;
+App.CatView = Ember.View.extend({       
+       
+    didInsertElement: function() {
+            var p = this.$();
+            var _top = p.offset().top;
+            var _index = snapindex*10;
+            
+            $(window).snap(_top,p);
+            p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index});
+            
+            console.log(_top + " / " + _index);
+            snapindex++;
+    }
+});
+
+App.ProductView = Ember.View.extend({
+    
+    template: 'productTemplate',
+    Products: function () {
+        var prods = App.categoriesController.get('content');
+        console.log(prods);
+    }
+});
 
 
 //--- helper ---//

@@ -48,33 +48,38 @@
                     <ul>
                     
                         {{#each App.categoriesController}}
-                            <li>
-                                {{#view App.CatView tagName="a" target="#" action="someAction"}}
+                            
+                            <li> 
+                                {{#view App.CatView}}
                                     <div class="snapper_placeholder"></div>
                                     <div class="snapper" style="background:{{unbound MobileColor}};">
                                     <img {{bindAttr src="MobileIcon"}} />
-                                    {{MobileName}}
-                                </div>
+                                    {{MobileName}}   
+                                    </div>
                                 {{/view}} 
+                                
                                 <div class="productlist">
-                                    {{#listProducts Products}}{{/listProducts}}
+                                
+                                    {{#Products}}
+                                        <section class="productlink" data-id="{{ProductId}}">
+                                            <h1>{{DisplayName}}</h1>
+                                            <img {{bindAttr src="MobileImageUrl"}} />
+                                            <p class="price">{{GrossPrice}}</p>
+                                            <p class="miles">{{Miles}} Punkte</p>
+                                            <aside>{{MobileDescription}}</aside>
+                                         </section>
+                                    {{/Products}}
+  
                                 </div>
-                            </li>    
+                            </li>  
+                            
                         {{/each}}
                     </ul>
                 </div>
                 
             </div>
         </script>
-        
-        <script data-template-name="product-node" type="text/x-handlebars">
-            <section class="productlink" data-id="{{ProductId}}">
-                <h1>'{{DisplayName}}</h1>
-                <p class="price">{{GrossPrice}}</p>
-                <p class="miles">{{Miles}} Punkte</p>
-                <aside>{{MobileDescription}}</aside>
-             </section>
-        </script>
+
         
         <!-- ################### CONTENT ################### --> 
 
