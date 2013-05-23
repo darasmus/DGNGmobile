@@ -1,0 +1,50 @@
+{
+    "posts": [{
+        "displayname": "Black (Flavours)",
+        "headline": "Black",
+        "mobilecolor": "#943631",
+        "mobileicon": "https:\/\/www.dolce-gusto.de\/PublishingImages\/Mobile\/CategoryHeadlines\/capsules_morning_coffees.png",
+        "mobilename": "Start in den Tag",
+        "name": "Black",
+        "products": [
+            {
+                "displayname":"COFFEE SHOP MIX",
+                "grossprice": "9.99",
+                "miles":"480",
+                "productid":"7613034143938_77" 
+            },
+            {
+                "displayname":"Grande Mild" ,
+                "grossprice": "4.79",
+                "miles":"220",
+                "productid":"7613033693427_00" 
+            }
+        ]
+    },
+    {
+        "displayname": "Espresso (Flavours))",
+        "headline": "Espresso",
+        "mobilecolor": "#000000",
+        "mobileicon": "https:\/\/www.dolce-gusto.de\/PublishingImages\/Mobile\/CategoryHeadlines\/capsules_black_coffees.png",
+        "mobilename": "Kleine Muntermacher",
+        "name": "Espresso",
+        "products": [
+            {
+                "displayname":"Lungo Intenso" ,
+                "grossprice": "4.79",
+                "miles":"220",
+                "productid":"7613033590146_00" 
+            }
+        ]
+    },
+    {
+        "displayname": "Frothy (Flavours)",
+        "headline": "Frothy",
+        "mobilecolor": "#ffcc00",
+        "mobileicon": "https:\/\/www.dolce-gusto.de\/PublishingImages\/Mobile\/CategoryHeadlines\/capsules_white_coffees.png",
+        "mobilename": "Schaumiger Genuss",
+        "name": "Frothy",
+        "products": []
+    }]
+}
+

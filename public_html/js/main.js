@@ -2,7 +2,7 @@ $(document).ready(function()
 {
     
     //toggle menu...
-    $('#openmenu').on('click', function() {
+    $('#openmenu, .menulink').on('click', function() {
         $('#mainmenu').slideToggle('fast', function() {
             // Animation complete.
         });

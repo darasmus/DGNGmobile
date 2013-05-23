@@ -27,13 +27,14 @@ body {
 
 a {
     color: #00e;
+    text-decoration: none;
 }
 
 a:visited {
 }
 
 a:hover {
-    color: #06e;
+    
 }
 
 /*
@@ -212,11 +213,23 @@ textarea[contenteditable] {
 /*** navi snap css ***/
 .snapper {
     width:320px;
-    height:50px;
+    height:25px;
     margin-bottom: 10px;
     color:white;
     background:red;
     top:0px;
+    font-size:16px;
+    font-weight: bold;
+    line-height:25px;
+    -webkit-box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.5); /* WebKit */
+    -moz-box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.5); /* Firefox */
+    box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, 0.5); /* Standard */
+}
+
+div.snapper img {
+  float: left;
+  width: auto;
+  height: 25px;
 }
 
 .snapper_placeholder {
@@ -324,7 +337,7 @@ div.productlist section.productlink p {
     line-height:45px;
     position:fixed;
     top:0px;
-    z-index:200;
+    z-index:2000;
 }
 
 #content {
@@ -333,7 +346,7 @@ div.productlist section.productlink p {
 
 .menulink {
     display: block;
-    width:240px;
+    width:265px;
     height:40px;
     line-height: 40px;
     padding-left:10px;
@@ -348,4 +361,25 @@ div.productlist section.productlink p {
 .violett {
     background: #66259b;
     color:white;
+}
+
+/*** test ***/
+
+.slide.in {
+    -webkit-transform: translateX(0);
+    -webkit-animation-name: slideinfromright;
+}
+
+.slide.out {
+    -webkit-transform: translateX(-100%);
+    -webkit-animation-name: slideouttoleft;
+}
+
+@-webkit-keyframes slideinfromright {
+    from { -webkit-transform: translateX(100%); }
+    to { -webkit-transform: translateX(0); }
+}
+@-webkit-keyframes slideouttoleft {
+    from { -webkit-transform: translateX(0); }
+    to { -webkit-transform: translateX(-100%); }
 }

@@ -41,16 +41,12 @@
         
         <!-- <div id="info"></div> --> 
         
-        
+        <!-- main template -->
         <script type="text/x-handlebars" data-template-name="application">
             <div id="wrapper">
               
                 <div id="head">
-                    <div id="openmenu">Menu</div>
-                    <div id="mainmenu">
-                        {{#linkTo "index" classNames="menulink brown"}}Home{{/linkTo}}
-                        {{#linkTo "categories" classNames="menulink violett"}}Categories{{/linkTo}}
-                    </div>
+                   {{render nav}} 
                 </div>
                     
                 <div id="content">
@@ -60,37 +56,67 @@
             </div>
         </script>
         
-        
-        <script type="text/x-handlebars" data-template-name="index">
-            Herzlich willkommen bei Dolce Gusto...
+        <!-- snippets -->
+        <script type="text/x-handlebars" data-template-name="nav">
+                <div id="openmenu">Menu</div>
+                <div id="mainmenu">
+                    {{#linkTo "index" classNames="menulink brown"}}Home{{/linkTo}}
+                    {{#linkTo "capsules" classNames="menulink violett"}}Capsules{{/linkTo}}
+                    {{#linkTo "machines" classNames="menulink violett"}}Machines{{/linkTo}}
+                    {{#linkTo "accessories" classNames="menulink violett"}}Accessories{{/linkTo}}
+                </div>
         </script>
         
-        <script type="text/x-handlebars" data-template-name="categories">
-            <div id="categories">
+        <!-- pages -->
+        <script type="text/x-handlebars" data-template-name="index">
+                Herzlich willkommen bei Dolce Gusto...
+        </script>
+        
+        <script type="text/x-handlebars" data-template-name="posts">
+            <div id="sidebar">
+              <ul>
+                {{#each post in App.postsController}}
+                  <li>
+                    + {{post.displayname}}<br />
+                    + {{post.products}}<br />  
+                        {{#each products}}
+                            -> {{displayname}}<br />
+                        {{/each}}
+                    
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+        </script>
+        
+        <script type="text/x-handlebars" data-template-name="capsules">
+            <div id="capsules">
                 <ul>
 
-                    {{#each App.categoriesController}}
+                    {{#each App.capsulesController}}
 
                         <li> 
-                            {{#view App.CatView}}
+                            {{#view App.CapView}}
                                 <div class="snapper_placeholder"></div>
                                 <div class="snapper" style="background:{{unbound MobileColor}};">
-                                <img {{bindAttr src="MobileIcon"}} />
-                                {{MobileName}}   
+                                    <img {{bindAttr src="MobileIcon"}} />
+                                {{MobileName}} 
                                 </div>
                             {{/view}} 
 
                             <div class="productlist">
 
-                                {{#Products}}
+                                {{#Capsules}}
+
                                     <section class="productlink clearfix" data-id="{{ProductId}}">
                                         <h1>{{DisplayName}}</h1>
-                                        <img {{bindAttr src="MobileImageUrl"}} />
+                                        {{#linkTo product ProductId}}<img {{bindAttr src="MobileImageUrl"}} />{{/linkTo}}
                                         <p class="price">{{GrossPrice}}</p>
                                         <p class="miles">{{Miles}} Punkte</p>
                                         <aside>{{MobileDescription}}</aside>
                                      </section>
-                                {{/Products}}
+                                     
+                                {{/Capsules}}
 
                             </div>
                         </li>  
@@ -99,6 +125,86 @@
 
                 </ul>
             </div>
+        </script>
+        
+        <script type="text/x-handlebars" data-template-name="machines">
+            <div id="machines">
+                <ul>
+
+                    {{#each App.machinesController}}
+
+                        <li> 
+                            {{#view App.MachView}}
+                                <div class="snapper_placeholder"></div>
+                                <div class="snapper" style="background:{{unbound MobileColor}};">
+                                    <img {{bindAttr src="MobileIcon"}} />
+                                {{MobileName}} 
+                                </div>
+                            {{/view}} 
+
+                            <div class="productlist">
+
+                                {{#Machines}}
+
+                                    <section class="productlink clearfix" data-id="{{ProductId}}">
+                                        <h1>{{DisplayName}}</h1>
+                                        {{#linkTo product ProductId}}<img {{bindAttr src="MobileImageUrl"}} />{{/linkTo}}
+                                        <p class="price">{{GrossPrice}}</p>
+                                        <p class="miles">{{Miles}} Punkte</p>
+                                        <aside>{{MobileDescription}}</aside>
+                                     </section>
+                                     
+                                {{/Machines}}
+
+                            </div>
+                        </li>  
+
+                    {{/each}}
+
+                </ul>
+            </div>
+        </script>
+        
+        <script type="text/x-handlebars" data-template-name="accessories">
+            <div id="accessories">
+                <ul>
+
+                    {{#each App.accessoriesController}}
+
+                        <li> 
+                            {{#view App.AccView}}
+                                <div class="snapper_placeholder"></div>
+                                <div class="snapper" style="background:{{unbound MobileColor}};">
+                                    <img {{bindAttr src="MobileIcon"}} />
+                                {{MobileName}} 
+                                </div>
+                            {{/view}} 
+
+                            <div class="productlist">
+
+                                {{#Accessories}}
+
+                                    <section class="productlink clearfix" data-id="{{ProductId}}">
+                                        <h1>{{DisplayName}}</h1>
+                                        {{#linkTo product ProductId}}<img {{bindAttr src="MobileImageUrl"}} />{{/linkTo}}
+                                        <p class="price">{{GrossPrice}}</p>
+                                        <p class="miles">{{Miles}} Punkte</p>
+                                        <aside>{{MobileDescription}}</aside>
+                                     </section>
+                                     
+                                {{/Accessories}}
+
+                            </div>
+                        </li>  
+
+                    {{/each}}
+
+                </ul>
+            </div>
+        </script>
+        
+        <script type="text/x-handlebars" data-template-name="product">
+                Here are the product...
         </script>
 
         

@@ -10,86 +10,208 @@ Ember.ENV = 'undefined' === typeof ENV ? {} : ENV;
 //--- application ---//
 App = Ember.Application.create({
     ready: function(){
-        App.categoriesController.loadCategories();
+        App.capsulesController.loadCapsules();
+        //App.postsController.loadPosts();
+        App.machinesController.loadMachines();
+        App.accessoriesController.loadAccessories();
+    }
+});
+
+App.Adapter = DS.RESTAdapter.extend({
+    namespace: 'json',
+    buildURL: function(record, suffix) {
+      return this._super(record,suffix) + '.json';
     }
 });
 
 App.Store = DS.Store.extend({
-  revision: 12
+  revision: 12,
+  adapter  : App.Adapter.create()
 });
 
 App.Router.map(function() {
     this.route("index", { path: "/" });
-    this.route("categories", { path: "/categories" }); 
-    this.route("static", { path: "/static" });
+    this.route("capsules", { path: "/capsules" }); 
+    this.route("machines", { path: "/machines" });
+    this.route("accessories", { path: "/accessories" });
+    this.route('product', { path: '/product/:ProductId' });
+    this.route('posts');
 });
 
 App.IndexRoute = Ember.Route.extend({
     
 });
 
+App.PostsRoute = Ember.Route.extend({
+  model: function() {
+  },
+  setupController: function(controller) {
+    //controller.set('content', App.Post.find());
+  }
+});
+
+
+App.ProductRoute = Ember.Route.extend({
+  model: function(params) {
+    App.productController.getProduct();
+  }
+});
+
 App.ApplicationView = Ember.View.extend({
+    attributeBindings:['data-role'],
+    'data-role': 'page'
 });
 
 //--- models ---//
 
-App.Product = DS.Model.extend({
-    DisplayName: null,
-    GrossPrice: null,
-    IsHidden: null,
-    IsInStock: null,
-    IsOrderable: null,
-    IsPayableByMiles: null,
-    MaxOrderable: null,
-    Miles: null,
-    MilesOnlyPromotionType: null,
-    MobileDescription: null,
-    MobileImageUrl: null,
-    OldPrice: null,
-    OriginalProduct: null,
-    ProductId: null,
-    ProductVat: null,
-    PromotionEndDate: null,
-    PromotionStartDate: null,
-    ShortDescription: null,
-    RecommendedProductIds: null,
-    Category: DS.belongsTo('App.Category')
+App.Post = DS.Model.extend({
+    displayname: DS.attr('string'),
+    headline: DS.attr('string'),
+    mobilecolor: DS.attr('string'),
+    mobileicon: DS.attr('string'),
+    mobilename: DS.attr('string'),
+    name: DS.attr('string'),
+    products: DS.hasMany('App.PostPro',{embedded: true})
 });
 
-App.Category = DS.Model.extend({
-    DisplayName: null,
-    Headline: null,
-    MobileColor: null,
-    MobileIcon: null,
-    MobileName: null,
-    Name: null,
-    Products: DS.hasMany('App.Product', { embedded: true })
+App.PostPro = DS.Model.extend({
+    displayname: DS.attr('string'),
+    grossprice: DS.attr('string'),
+    miles: DS.attr('string'),
+    productid: DS.attr('string')
+});
+
+App.CapProducts = DS.Model.extend({
+    DisplayName: DS.attr('string'),
+    GrossPrice: DS.attr('string'),
+    IsHidden: DS.attr('string'),
+    IsInStock: DS.attr('boolean'),
+    IsOrderable: DS.attr('boolean'),
+    IsPayableByMiles: DS.attr('boolean'),
+    MaxOrderable: DS.attr('string'),
+    Miles: DS.attr('string'),
+    MilesOnlyPromotionType: DS.attr('string'),
+    MobileDescription: DS.attr('string'),
+    MobileImageUrl: DS.attr('string'),
+    OldPrice: DS.attr('string'),
+    OriginalProduct: DS.attr('string'),
+    ProductId: DS.attr('string'),
+    ProductVat: DS.attr('string'),
+    PromotionEndDate: DS.attr('string'),
+    PromotionStartDate: DS.attr('string'),
+    ShortDescription: DS.attr('string'),
+    RecommendedProductIds: DS.attr('string')
+});
+
+App.Capsules = DS.Model.extend({
+    DisplayName: DS.attr('string'),
+    Headline: DS.attr('string'),
+    MobileColor: DS.attr('string'),
+    MobileIcon: DS.attr('string'),
+    MobileName: DS.attr('string'),
+    Name: DS.attr('string'),
+    Products: []
+});
+
+App.MachProducts = DS.Model.extend({
+    DisplayName: DS.attr('string'),
+    GrossPrice: DS.attr('string'),
+    IsHidden: DS.attr('string'),
+    IsInStock: DS.attr('boolean'),
+    IsOrderable: DS.attr('boolean'),
+    IsPayableByMiles: DS.attr('boolean'),
+    MaxOrderable: DS.attr('string'),
+    Miles: DS.attr('string'),
+    MilesOnlyPromotionType: DS.attr('string'),
+    MobileDescription: DS.attr('string'),
+    MobileImageUrl: DS.attr('string'),
+    OldPrice: DS.attr('string'),
+    OriginalProduct: DS.attr('string'),
+    ProductId: DS.attr('string'),
+    ProductVat: DS.attr('string'),
+    PromotionEndDate: DS.attr('string'),
+    PromotionStartDate: DS.attr('string'),
+    ShortDescription: DS.attr('string'),
+    RecommendedProductIds: DS.attr('string')
+});
+
+App.Machines = DS.Model.extend({
+    DisplayName: DS.attr('string'),
+    Headline: DS.attr('string'),
+    MobileColor: DS.attr('string'),
+    MobileIcon: DS.attr('string'),
+    MobileName: DS.attr('string'),
+    Name: DS.attr('string'),
+    Products: []
+});
+
+App.AccProducts = DS.Model.extend({
+    DisplayName: DS.attr('string'),
+    GrossPrice: DS.attr('string'),
+    IsHidden: DS.attr('string'),
+    IsInStock: DS.attr('boolean'),
+    IsOrderable: DS.attr('boolean'),
+    IsPayableByMiles: DS.attr('boolean'),
+    MaxOrderable: DS.attr('string'),
+    Miles: DS.attr('string'),
+    MilesOnlyPromotionType: DS.attr('string'),
+    MobileDescription: DS.attr('string'),
+    MobileImageUrl: DS.attr('string'),
+    OldPrice: DS.attr('string'),
+    OriginalProduct: DS.attr('string'),
+    ProductId: DS.attr('string'),
+    ProductVat: DS.attr('string'),
+    PromotionEndDate: DS.attr('string'),
+    PromotionStartDate: DS.attr('string'),
+    ShortDescription: DS.attr('string'),
+    RecommendedProductIds: DS.attr('string')
+});
+
+App.Accessories = DS.Model.extend({
+    DisplayName: DS.attr('string'),
+    Headline: DS.attr('string'),
+    MobileColor: DS.attr('string'),
+    MobileIcon: DS.attr('string'),
+    MobileName: DS.attr('string'),
+    Name: DS.attr('string'),
+    Products: []
 });
 
 //--- controller ---//           
 
-App.CategoriesController = Ember.ArrayController.extend({
+App.ProductsController = Ember.ArrayController.extend({
     content: [],
             
-    loadCategories: function() {
+    loadProducts: function() {
+        this.set('content', App.Product.find()); 
+    }
+});
+App.productsController = App.ProductsController.create();            
+
+
+//-> capsules //
+App.CapsulesController = Ember.ArrayController.extend({
+    content: [],
+            
+    loadCapsules: function() {
         var me = this;
         var url = '/json/capsules.json';
         
         $.getJSON(url,function(data){
             me.set('content', []);
             $(data.Categories).each(function(index,value){
-                var c = App.Category.createRecord({
+                var c = App.Capsules.createRecord({
                     DisplayName: value.DisplayName,
                     Headline: value.Headline,
                     MobileColor: value.MobileColor,
                     MobileIcon: value.MobileIcon,
                     MobileName: value.MobileName,
                     Name: value.Name,
-                    Products: new Array()
+                    Capsules: new Array()
                 });
                 
                 $(value.Products).each(function(index,product){
-                    var p = App.Product.createRecord({
+                    var p = App.CapProducts.createRecord({
                         DisplayName: product.DisplayName,
                         MobileImageUrl: product.MobileImageUrl,
                         GrossPrice: product.GrossPrice,
@@ -100,7 +222,7 @@ App.CategoriesController = Ember.ArrayController.extend({
                     
                     //is available?
                     if( (product.IsOrderable === true) && (product.IsInStock === true) ) {
-                        c.Products.pushObject(p);
+                        c.Capsules.pushObject(p);
                     }
                 });
                 
@@ -109,13 +231,109 @@ App.CategoriesController = Ember.ArrayController.extend({
         });
     }
 });
-App.categoriesController = App.CategoriesController.create(); 
+App.capsulesController = App.CapsulesController.create(); 
+
+//-> machines //
+App.MachinesController = Ember.ArrayController.extend({
+    content: [],
+            
+    loadMachines: function() {
+        var me = this;
+        var url = '/json/machines.json';
+        
+        $.getJSON(url,function(data){
+            me.set('content', []);
+            $(data.Categories).each(function(index,value){
+                var c = App.Machines.createRecord({
+                    DisplayName: value.DisplayName,
+                    Headline: value.Headline,
+                    MobileColor: value.MobileColor,
+                    MobileIcon: value.MobileIcon,
+                    MobileName: value.MobileName,
+                    Name: value.Name,
+                    Machines: new Array()
+                });
+                
+                $(value.Products).each(function(index,product){
+                    var p = App.MachProducts.createRecord({
+                        DisplayName: product.DisplayName,
+                        MobileImageUrl: product.MobileImageUrl,
+                        GrossPrice: product.GrossPrice,
+                        Miles: product.Miles,
+                        MobileDescription: product.MobileDescription,
+                        ProductId: product.ProductId
+                    });
+                    
+                    //is available?
+                    //if( (product.IsOrderable === true) && (product.IsInStock === true) ) {
+                        c.Machines.pushObject(p);
+                    //}
+                });
+                
+                me.pushObject(c);
+            });
+        });
+    }
+});
+App.machinesController = App.MachinesController.create();
+
+//-> accessoires //
+App.AccessoriesController = Ember.ArrayController.extend({
+    content: [],
+            
+    loadAccessories: function() {
+        var me = this;
+        var url = '/json/accessories.json';
+        
+        $.getJSON(url,function(data){
+            me.set('content', []);
+            $(data.Categories).each(function(index,value){
+                var c = App.Accessories.createRecord({
+                    DisplayName: value.DisplayName,
+                    Headline: value.Headline,
+                    MobileColor: value.MobileColor,
+                    MobileIcon: value.MobileIcon,
+                    MobileName: value.MobileName,
+                    Name: value.Name,
+                    Accessories: new Array()
+                });
+                
+                $(value.Products).each(function(index,product){
+                    var p = App.AccProducts.createRecord({
+                        DisplayName: product.DisplayName,
+                        MobileImageUrl: product.MobileImageUrl,
+                        GrossPrice: product.GrossPrice,
+                        Miles: product.Miles,
+                        MobileDescription: product.MobileDescription,
+                        ProductId: product.ProductId
+                    });
+                    
+                    //is available?
+                    if( (product.IsOrderable === true) && (product.IsInStock === true) ) {
+                        c.Accessories.pushObject(p);
+                    }
+                });
+                
+                me.pushObject(c);
+            });
+        });
+    }
+});
+App.accessoriesController = App.AccessoriesController.create();
+
+App.PostsController = Ember.ArrayController.extend({
+    content: [],
+            
+    loadPosts: function() {
+        this.set('content', App.Post.find()); 
+    }
+});
+App.postsController = App.PostsController.create(); 
 
 //--- views ---//
 
 var snapindex = 1;
-App.CatView = Ember.View.extend({       
-       
+App.CapView = Ember.View.extend({       
     didInsertElement: function() {
             var p = this.$();
             var _top = p.offset().top;
@@ -123,18 +341,40 @@ App.CatView = Ember.View.extend({
             
             $(window).snap(_top,p);
             p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index});
-            
-            console.log(_top + " / " + _index);
             snapindex++;
     }
 });
 
+var snapindex2 = 1;
+App.MachView = Ember.View.extend({       
+    didInsertElement: function() {
+            var p = this.$();
+            var _top = p.offset().top;
+            var _index = snapindex2*10;
+            
+            $(window).snap(_top,p);
+            p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index});
+            snapindex2++;
+    }
+});
+
+var snapindex3 = 1;
+App.AccView = Ember.View.extend({       
+    didInsertElement: function() {
+            var p = this.$();
+            var _top = p.offset().top;
+            var _index = snapindex3*10;
+            
+            $(window).snap(_top,p);
+            p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index});
+            snapindex3++;
+    }
+});
 
 //--- helper ---//
 
 //not needed but good for dev helpers
-Handlebars.registerHelper('listProducts', function(context, options) {
-    
+Handlebars.registerHelper('listProducts', function(context, options) {    
   var ret = "";
   var data = options.contexts[0].Products;
   
@@ -149,5 +389,4 @@ Handlebars.registerHelper('listProducts', function(context, options) {
   }
   
   return ret;
-
 });
