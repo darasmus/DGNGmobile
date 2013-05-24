@@ -275,8 +275,13 @@ App.CapView = Ember.View.extend({
             var _top = p.offset().top;
             var _index = snapindex*10;
             
-            $(window).snap(_top,p);
+            //$(window).snap(_top,p);
             p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index, 'width': '100%'});
+            
+            _capSnapPos.push(_top);
+            _capSnapElem.push(p);
+            
+            p.attr('data-index',snapindex-1);
             snapindex++;
     }
 });

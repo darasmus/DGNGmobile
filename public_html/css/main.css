@@ -212,7 +212,6 @@ textarea[contenteditable] {
 
 /*** navi snap css ***/
 .snapper {
-
     height:25px;
     margin-bottom: 10px;
     color:white;
@@ -362,25 +361,4 @@ div.productlist section.productlink p {
 .violett {
     background: #66259b;
     color:white;
-}
-
-/*** test ***/
-
-.slide.in {
-    -webkit-transform: translateX(0);
-    -webkit-animation-name: slideinfromright;
-}
-
-.slide.out {
-    -webkit-transform: translateX(-100%);
-    -webkit-animation-name: slideouttoleft;
-}
-
-@-webkit-keyframes slideinfromright {
-    from { -webkit-transform: translateX(100%); }
-    to { -webkit-transform: translateX(0); }
-}
-@-webkit-keyframes slideouttoleft {
-    from { -webkit-transform: translateX(0); }
-    to { -webkit-transform: translateX(-100%); }
 }
