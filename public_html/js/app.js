@@ -81,7 +81,7 @@ App.PostPro = DS.Model.extend({
     productid: DS.attr('string')
 });
 
-App.CapProducts = DS.Model.extend({
+App.CategoryProduct = DS.Model.extend({
     DisplayName: DS.attr('string'),
     GrossPrice: DS.attr('string'),
     IsHidden: DS.attr('string'),
@@ -103,71 +103,7 @@ App.CapProducts = DS.Model.extend({
     RecommendedProductIds: DS.attr('string')
 });
 
-App.Capsules = DS.Model.extend({
-    DisplayName: DS.attr('string'),
-    Headline: DS.attr('string'),
-    MobileColor: DS.attr('string'),
-    MobileIcon: DS.attr('string'),
-    MobileName: DS.attr('string'),
-    Name: DS.attr('string'),
-    Products: []
-});
-
-App.MachProducts = DS.Model.extend({
-    DisplayName: DS.attr('string'),
-    GrossPrice: DS.attr('string'),
-    IsHidden: DS.attr('string'),
-    IsInStock: DS.attr('boolean'),
-    IsOrderable: DS.attr('boolean'),
-    IsPayableByMiles: DS.attr('boolean'),
-    MaxOrderable: DS.attr('string'),
-    Miles: DS.attr('string'),
-    MilesOnlyPromotionType: DS.attr('string'),
-    MobileDescription: DS.attr('string'),
-    MobileImageUrl: DS.attr('string'),
-    OldPrice: DS.attr('string'),
-    OriginalProduct: DS.attr('string'),
-    ProductId: DS.attr('string'),
-    ProductVat: DS.attr('string'),
-    PromotionEndDate: DS.attr('string'),
-    PromotionStartDate: DS.attr('string'),
-    ShortDescription: DS.attr('string'),
-    RecommendedProductIds: DS.attr('string')
-});
-
-App.Machines = DS.Model.extend({
-    DisplayName: DS.attr('string'),
-    Headline: DS.attr('string'),
-    MobileColor: DS.attr('string'),
-    MobileIcon: DS.attr('string'),
-    MobileName: DS.attr('string'),
-    Name: DS.attr('string'),
-    Products: []
-});
-
-App.AccProducts = DS.Model.extend({
-    DisplayName: DS.attr('string'),
-    GrossPrice: DS.attr('string'),
-    IsHidden: DS.attr('string'),
-    IsInStock: DS.attr('boolean'),
-    IsOrderable: DS.attr('boolean'),
-    IsPayableByMiles: DS.attr('boolean'),
-    MaxOrderable: DS.attr('string'),
-    Miles: DS.attr('string'),
-    MilesOnlyPromotionType: DS.attr('string'),
-    MobileDescription: DS.attr('string'),
-    MobileImageUrl: DS.attr('string'),
-    OldPrice: DS.attr('string'),
-    OriginalProduct: DS.attr('string'),
-    ProductId: DS.attr('string'),
-    ProductVat: DS.attr('string'),
-    PromotionEndDate: DS.attr('string'),
-    PromotionStartDate: DS.attr('string'),
-    ShortDescription: DS.attr('string'),
-    RecommendedProductIds: DS.attr('string')
-});
-
-App.Accessories = DS.Model.extend({
+App.Category = DS.Model.extend({
     DisplayName: DS.attr('string'),
     Headline: DS.attr('string'),
     MobileColor: DS.attr('string'),
@@ -200,7 +136,7 @@ App.CapsulesController = Ember.ArrayController.extend({
         $.getJSON(url,function(data){
             me.set('content', []);
             $(data.Categories).each(function(index,value){
-                var c = App.Capsules.createRecord({
+                var c = App.Category.createRecord({
                     DisplayName: value.DisplayName,
                     Headline: value.Headline,
                     MobileColor: value.MobileColor,
@@ -211,7 +147,7 @@ App.CapsulesController = Ember.ArrayController.extend({
                 });
                 
                 $(value.Products).each(function(index,product){
-                    var p = App.CapProducts.createRecord({
+                    var p = App.CategoryProduct.createRecord({
                         DisplayName: product.DisplayName,
                         MobileImageUrl: product.MobileImageUrl,
                         GrossPrice: product.GrossPrice,
@@ -244,7 +180,7 @@ App.MachinesController = Ember.ArrayController.extend({
         $.getJSON(url,function(data){
             me.set('content', []);
             $(data.Categories).each(function(index,value){
-                var c = App.Machines.createRecord({
+                var c = App.Category.createRecord({
                     DisplayName: value.DisplayName,
                     Headline: value.Headline,
                     MobileColor: value.MobileColor,
@@ -255,7 +191,7 @@ App.MachinesController = Ember.ArrayController.extend({
                 });
                 
                 $(value.Products).each(function(index,product){
-                    var p = App.MachProducts.createRecord({
+                    var p = App.CategoryProduct.createRecord({
                         DisplayName: product.DisplayName,
                         MobileImageUrl: product.MobileImageUrl,
                         GrossPrice: product.GrossPrice,
@@ -288,7 +224,7 @@ App.AccessoriesController = Ember.ArrayController.extend({
         $.getJSON(url,function(data){
             me.set('content', []);
             $(data.Categories).each(function(index,value){
-                var c = App.Accessories.createRecord({
+                var c = App.Category.createRecord({
                     DisplayName: value.DisplayName,
                     Headline: value.Headline,
                     MobileColor: value.MobileColor,
@@ -299,7 +235,7 @@ App.AccessoriesController = Ember.ArrayController.extend({
                 });
                 
                 $(value.Products).each(function(index,product){
-                    var p = App.AccProducts.createRecord({
+                    var p = App.CategoryProduct.createRecord({
                         DisplayName: product.DisplayName,
                         MobileImageUrl: product.MobileImageUrl,
                         GrossPrice: product.GrossPrice,
@@ -340,7 +276,7 @@ App.CapView = Ember.View.extend({
             var _index = snapindex*10;
             
             $(window).snap(_top,p);
-            p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index});
+            p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index, 'width': '100%'});
             snapindex++;
     }
 });
@@ -353,7 +289,7 @@ App.MachView = Ember.View.extend({
             var _index = snapindex2*10;
             
             $(window).snap(_top,p);
-            p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index});
+            p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index, 'width': '100%'});
             snapindex2++;
     }
 });
@@ -366,7 +302,7 @@ App.AccView = Ember.View.extend({
             var _index = snapindex3*10;
             
             $(window).snap(_top,p);
-            p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index});
+            p.css({ 'position':'absolute', 'top': _top-60, 'z-index': _index, 'width': '100%'});
             snapindex3++;
     }
 });
