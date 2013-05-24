@@ -282,7 +282,7 @@ div.productlist section h1 {
 div.productlist section img {
   float: left;
   height: auto;
-  width: 26%;
+  max-width: 26%;
 }
 
 div.productlist section.productlink img {
