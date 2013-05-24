@@ -1,9 +1,13 @@
-
     
     var lastScrollTop = 0;
-    $(window).on('touchmove scroll', function () {   
+    
+    //$(window).bind('touchmove',function(e) {
+    $(window).on('touchmove scroll', function (e) {   
         
         var _windowTop = $(window).scrollTop();
+        
+        $('#info').html(_windowTop);
+        
         var _pos = _capSnapPos[_curCapSnapIndex];
         var _offset = 48;
         var _offsetTop = _offset +21;
@@ -15,7 +19,7 @@
             var _nextPos = _curCapSnapIndex + 1;
             var _curNextPos = _capSnapPos[_nextPos];
             var _curNext = _capSnapElem[_nextPos];
-            
+        
             if( (_windowTop + _offsetTop >= _curNextPos) && (_windowTop + _offset < _curNextPos) ) {
                 
                 var _topPos = _curNextPos-85;
@@ -25,6 +29,8 @@
                 _curNext.css({ 'position':'absolute', 'top': _bottomPos});
             
                 _move = false;
+        
+                console.log('between: ' + _topPos + " / " + _bottomPos);
                 
             } else if (_windowTop + _offset >= _curNextPos) {
                 _curCapSnapIndex = _nextPos;
